@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicles',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehiclesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onNewVehicle(vehicle_type: string) {
+    this.router.navigate(['vehicles','new', vehicle_type]);
   }
 
 }
