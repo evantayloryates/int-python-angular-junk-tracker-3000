@@ -10,7 +10,7 @@ import { VehiclesService } from '../../vehicles.service';
 })
 export class UpdateCoupeComponent implements OnInit {
 
-  id: string;
+  registration_number: string;
 
   coupeForm = new FormGroup({
     nickname: new FormControl('', [Validators.required, Validators.maxLength(80)]),
@@ -27,15 +27,15 @@ export class UpdateCoupeComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      if (this.id != null) {
-        this.vehicleSrc.getVehicle(this.id).subscribe(
+      this.registration_number = params['registration_number'];
+      if (this.registration_number != null) {
+        this.vehicleSrc.getVehicle(this.registration_number).subscribe(
           vehicle => {
             this.coupeForm.get('nickname').patchValue(vehicle["nickname"]);
             this.coupeForm.get('mileage').patchValue(vehicle["mileage"]);
             this.coupeForm.get('engine_status').patchValue(vehicle["engine_status"]);
             this.coupeForm.get('wheels').patchValue(vehicle["wheels"]);
-            this.coupeForm.get('doors').patchValue(vehicle['doors'] || '')
+            this.coupeForm.get('doors').patchValue(vehicle['doors'])
           }
         );
       }});
