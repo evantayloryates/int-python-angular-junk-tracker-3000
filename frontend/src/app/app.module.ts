@@ -16,6 +16,7 @@ import { UpdateSedanComponent } from './vehicles/update-vehicle/update-sedan/upd
 import { UpdateCoupeComponent } from './vehicles/update-vehicle/update-coupe/update-coupe.component';
 import { UpdateMinivanComponent } from './vehicles/update-vehicle/update-minivan/update-minivan.component';
 import { UpdateMotorcycleComponent } from './vehicles/update-vehicle/update-motorcycle/update-motorcycle.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UpdateMotorcycleComponent } from './vehicles/update-vehicle/update-moto
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

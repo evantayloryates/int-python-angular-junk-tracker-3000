@@ -18,8 +18,12 @@ export class VehiclesService {
     return this.http.get(`${this.url}/vehicles`) as Observable<Object[]>;
   }
 
+  getVehicle(id: string) {
+    return this.http.get(`${this.url}/vehicles/${id}`) as Observable<Object[]>;
+  }
+
   postVehicle(vehicle) {
-    this.http.post(`${this.url}/vehicles`, {})
+    return this.http.post(`${this.url}/vehicles`, vehicle);
   }
 
   putVehicle(id, vehicle) {
@@ -29,4 +33,6 @@ export class VehiclesService {
   deleteVehicle(id, vehicle) {
     this.http.delete(`${this.url}/vehicles/${id}`)
   }
+  
+  
 }

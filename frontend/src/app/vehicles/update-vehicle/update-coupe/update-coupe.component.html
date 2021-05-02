@@ -1,1 +1,59 @@
-<p>update-coupe works!</p>
+<form [formGroup]="coupeForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Nickname -->
+    <div class="form-group">
+      <label for="nicknameField">Nickname</label>
+      <input type="string" class="form-control" id="nicknameField" aria-describedby="nicknameHelp" 
+             placeholder="Enter Nickname" formControlName="nickname">
+      <small id="nicknameHelp" class="form-text text-muted">Nickname length should not exceed 80 chars</small>
+    </div>
+
+    <!-- Mileage -->
+    <div class="form-group">
+      <label for="mileageField">Mileage</label>
+      <input type="number" class="form-control" id="mileageField" placeholder="Enter Mileage"
+             aria-describedby="mileageHelp" formControlName="mileage">
+      <small id="mileageHelp" class="form-text text-muted">Mileage must be a positive integer greater than or equal to zero</small>
+    </div>
+
+    <!-- Engine Status -->
+    <div class="form-group">
+        <label for="engineStatusField">Engine Status</label>
+        <br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" value="works" formControlName="engine_status" type="radio" id="engineWorksRadio" value="works" checked>
+            <label class="form-check-label" for="engineWorksRadio">
+              Works
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" value="fixable" formControlName="engine_status" type="radio" id="engineFixableRadio" value="fixable">
+            <label class="form-check-label" for="engineFixableRadio">
+              Fixable
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" value="junk" formControlName="engine_status" type="radio" id="engineJunkRadio" value="junk">
+            <label class="form-check-label" for="engineJunkRadio">
+              Junk
+            </label>
+        </div>
+    </div>
+
+    <!-- Wheels -->
+    <div class="form-group">
+        <label for="wheelsField">Wheels</label>
+        <input type="number" class="form-control" id="wheelsField" placeholder="Enter Wheel Count" 
+               aria-describedby="wheelsHelp" formControlName="wheels">
+        <small id="wheelsHelp" class="form-text text-muted">Wheel count must be a positive integer that does not exceed 4</small>
+    </div>
+
+    <!-- Doors -->
+    <div class="form-group">
+        <label for="doorsField">Doors</label>
+        <input formControlName="doors" type="number" class="form-control" id="doorsField" placeholder="Enter Door Count" aria-describedby="doorsHelp">
+        <small id="doorsHelp" class="form-text text-muted">Door count must be a positive integer that does not exceed 2</small>
+    </div>
+       
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
