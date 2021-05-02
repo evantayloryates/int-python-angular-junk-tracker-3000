@@ -21,7 +21,7 @@ const appRoutes: Routes = [
     { path: 'vehicles/:id/edit', component: UpdateVehicleComponent},
     { path: 'vehicles',component: VehiclesComponent, children: [
       { path: '', component: EmptyVehicleComponent },
-      { path: ':id', component: VehicleComponent }
+      { path: ':registration_number', component: VehicleComponent }
     ]}
 ];
 
