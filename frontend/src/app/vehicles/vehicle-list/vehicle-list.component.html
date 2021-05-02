@@ -1,1 +1,4 @@
 <p>vehicle-list works!</p>
+<ng-container *ngFor="let vehicle of vehicles">
+    <app-vehicle-list-item [vehicle]="vehicle"></app-vehicle-list-item>
+</ng-container>
