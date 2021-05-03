@@ -26,12 +26,12 @@ export class VehiclesService {
     return this.http.post(`${this.url}/vehicles`, vehicle);
   }
 
-  putVehicle(id, vehicle) {
-    this.http.put(`${this.url}/vehicles/${id}`, {})
+  patchVehicle(id, vehicle) {
+    return this.http.patch(`${this.url}/vehicles/${id}`, vehicle);
   }
 
-  deleteVehicle(id, vehicle) {
-    this.http.delete(`${this.url}/vehicles/${id}`)
+  deleteVehicle(id) {
+    return this.http.delete(`${this.url}/vehicles/${id}`);
   }
   
   

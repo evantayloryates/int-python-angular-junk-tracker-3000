@@ -1,1 +1,74 @@
-<p>vehicle works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <h1>{{ vehicle.nickname }}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-primary mr-2" (click)="onEditVehicle()">Edit Vehicle</button>
+        <button class="btn btn-primary mr-2" (click)="onDeleteVehicle()">Delete Vehicle</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        Vehicle Type: {{ vehicle.vehicle_type }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        Mileage: {{ vehicle.mileage }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        Mileage Rating: {{ vehicle.mileage_rating }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        Registration Number: {{ vehicle.registration_number }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        Engine Status: {{ vehicle.engine_status }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        Wheel Count: {{ vehicle.wheels }}
+    </div>
+</div>
+
+<div class="row" *ngIf="vehicleIs(['motorcycle'])">
+    <div class="col-xs-12">
+        Seat Status: {{ vehicle.seat_status }}
+    </div>
+</div>
+
+<div class="row" *ngIf="vehicleIs(['sedan', 'coupe', 'minivan'])">
+    <div class="col-xs-12">
+        Door Count: {{ vehicle.doors }}
+    </div>
+</div>
+
+<ng-container *ngIf="vehicleIs(['minivan'])">
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-group">
+                <li
+                    class="list-group-item"
+                    *ngFor="let door of vehicle.door_types; let i = index">
+                    Door {{i+1}} Sliding: {{ door.sliding }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</ng-container>
+

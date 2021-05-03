@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VehiclesService } from '../../vehicles.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { VehiclesService } from '../../vehicles.service';
 })
 export class UpdateCoupeComponent implements OnInit {
 
-  registration_number: string;
+  id: string;
 
   coupeForm = new FormGroup({
     nickname: new FormControl('', [Validators.required, Validators.maxLength(80)]),
@@ -20,48 +20,54 @@ export class UpdateCoupeComponent implements OnInit {
     doors: new FormControl('', [Validators.required, Validators.min(0), Validators.max(2)])
   });
 
-  constructor(private route: ActivatedRoute,
-    private router: Router,
-    private vehicleSrc: VehiclesService) { }
+  constructor(private router: Router,
+              private vehicleSrc: VehiclesService) { }
 
-
+  @Input() vehicle;
+  
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.registration_number = params['registration_number'];
-      if (this.registration_number != null) {
-        this.vehicleSrc.getVehicle(this.registration_number).subscribe(
-          vehicle => {
-            this.coupeForm.get('nickname').patchValue(vehicle["nickname"]);
-            this.coupeForm.get('mileage').patchValue(vehicle["mileage"]);
-            this.coupeForm.get('engine_status').patchValue(vehicle["engine_status"]);
-            this.coupeForm.get('wheels').patchValue(vehicle["wheels"]);
-            this.coupeForm.get('doors').patchValue(vehicle['doors'])
-          }
-        );
-      }});
+    if (this.vehicle) {
+      this.id = this.vehicle.id;
+      this.coupeForm.get('nickname').patchValue(this.vehicle["nickname"]);
+      this.coupeForm.get('mileage').patchValue(this.vehicle["mileage"]);
+      this.coupeForm.get('engine_status').patchValue(this.vehicle["engine_status"]);
+      this.coupeForm.get('wheels').patchValue(this.vehicle["wheels"]);
+      this.coupeForm.get('doors').patchValue(this.vehicle['doors'])
+    }
+  }
+
+  getMileageRating(mileage: number): string {
+    if (mileage < 10000) return "low";
+    else if (mileage < 100000) return "medium";
+    else return "high";
   }
 
   onSubmit() {
-    console.log(this.coupeForm.valid)
     if (this.coupeForm.valid) {
       let form_vehicle = {
         vehicle_type: 'coupe',
-        nickname: this.coupeForm.get('wheels').value,
+        nickname: this.coupeForm.get('nickname').value,
         mileage: this.coupeForm.get('mileage').value,
+        mileage_rating: this.getMileageRating(this.coupeForm.get('mileage').value),
         engine_status: this.coupeForm.get('engine_status').value,
         wheels: this.coupeForm.get('wheels').value,
         doors: this.coupeForm.get('doors').value,
       };
-      console.log(form_vehicle)
-      this.vehicleSrc.postVehicle(form_vehicle).subscribe(
-        new_vehicle => {
-          console.log(new_vehicle);
-          this.router.navigate(['vehicles']);
-        }
-      );
-    }
-    
+      if (this.id) {
+        this.vehicleSrc.patchVehicle(this.id, form_vehicle).subscribe(
+          patched_vehicle => {
+            console.log(patched_vehicle);
+            this.router.navigate(['vehicles']);
+          }
+        );
+      } else {
+        this.vehicleSrc.postVehicle(form_vehicle).subscribe(
+          new_vehicle => {
+            console.log(new_vehicle);
+            this.router.navigate(['vehicles']);
+          });
+      }
+    }  
   }
-
 }
  

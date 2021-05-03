@@ -1,7 +1,14 @@
-<p>vehicles container works!</p>
-<button (click)="onNewVehicle('coupe')">New Coupe</button>
-<button (click)="onNewVehicle('sedan')">New Sedan</button>
-<button (click)="onNewVehicle('minivan')">New MiniVan</button>
-<button (click)="onNewVehicle('motorcycle')">New Motorcycle</button>
-<app-vehicle-list></app-vehicle-list>
-<router-outlet></router-outlet>
+<button class="btn btn-success mr-2" (click)="onNewVehicle('coupe')">New Coupe</button>
+<button class="btn btn-success mr-2" (click)="onNewVehicle('sedan')">New Sedan</button>
+<button class="btn btn-success mr-2" (click)="onNewVehicle('minivan')">New MiniVan</button>
+<button class="btn btn-success mr-2" (click)="onNewVehicle('motorcycle')">New Motorcycle</button>
+<div class="row">
+    <div class="col-md-5">
+        <app-vehicle-list></app-vehicle-list>
+    </div>
+    <div class="col-md-7">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
