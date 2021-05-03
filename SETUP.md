@@ -48,6 +48,7 @@ You should now be able to access the Flask API at `http://localhost:5000/vehicle
 Use [Angular CLI](https://angular.io/cli) to start the Angular development server in the `frontend` directory:
 
     cd frontend
+    npm install
     ng serve
 
 You should now be able to access the Flask API at `http://localhost:4200`.
