@@ -1,3 +1,6 @@
 <div *ngIf="vehicle | async as v">
+    <app-update-sedan *ngIf="v.vehicle_type === 'sedan'" [vehicle]="v"></app-update-sedan>
     <app-update-coupe *ngIf="v.vehicle_type === 'coupe'" [vehicle]="v"></app-update-coupe>
+    <app-update-minivan *ngIf="v.vehicle_type === 'minivan'" [vehicle]="v"></app-update-minivan>
+    <app-update-motorcycle *ngIf="v.vehicle_type === 'motorcycle'" [vehicle]="v"></app-update-motorcycle>
 </div>
