@@ -42,20 +42,21 @@ export class UpdateCoupeComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.coupeForm);
     console.log(this.coupeForm.valid)
     if (this.coupeForm.valid) {
       let form_vehicle = {
+        vehicle_type: 'coupe',
         nickname: this.coupeForm.get('wheels').value,
         mileage: this.coupeForm.get('mileage').value,
         engine_status: this.coupeForm.get('engine_status').value,
         wheels: this.coupeForm.get('wheels').value,
-        doors: this.coupeForm.get('doors').value
+        doors: this.coupeForm.get('doors').value,
       };
       console.log(form_vehicle)
       this.vehicleSrc.postVehicle(form_vehicle).subscribe(
         new_vehicle => {
-          
+          console.log(new_vehicle);
+          this.router.navigate(['vehicles']);
         }
       );
     }

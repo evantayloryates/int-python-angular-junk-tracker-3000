@@ -1,1 +1,9 @@
-<p>vehicle-list-item works!</p>
+<a style="cursor: pointer;"
+   [routerLink]="vehicle.registration_number"
+   routerLinkActive="active"
+   class="list-group-item clearfix">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ vehicle.nickname }}</h4>
+        <p class="list-group-item-text">{{ vehicle.vehicle_type }}</p>
+    </div>
+</a>
